@@ -1,0 +1,19 @@
+{
+    "name": "zloykolobok/bitrix24",
+    "description": "Package for working with Bitrix24 via webhooks",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Nikolaenkov",
+            "email": "rnikolaenkov@yandex.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Zloykolobok\\Bitrix24\\": "src/"
+        }
+    },
+    "require": {}
+}
