@@ -2,9 +2,12 @@
 
 namespace Zloykolobok\Bitrix24;
 
-use MongoDB\Driver\Exception\ConnectionTimeoutException;
+use Zloykolobok\Bitrix24\Exception\BitrixException;
+use Zloykolobok\Bitrix24\Exception\EmptyException;
 use Zloykolobok\Bitrix24\Exception\UrlException;
 use Zloykolobok\Bitrix24\Exception\TimeoutException;
+use Zloykolobok\Bitrix24\Exception\BitrixErrorException;
+use Zloykolobok\Bitrix24\Exception\ConnectionException;
 
 abstract class Bitrix
 {
@@ -39,7 +42,9 @@ abstract class Bitrix
 
     protected function send(array $data, $action)
     {
-//        dd($this->getUrl());
+        if (!extension_loaded('curl')) {
+            throw new BitrixException('cURL extension must be installed to use this library');
+        }
         if(!$this->getUrl()) throw new UrlException('Необходимо задать url');
         if(!$this->getTimeout()) throw new TimeoutException('Необходимо задать timeout');
 
@@ -58,9 +63,15 @@ abstract class Bitrix
         curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
         curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, $this->timeout );
         curl_setopt( $ch, CURLOPT_TIMEOUT, $this->timeout );
+
         $res = curl_exec( $ch );
 
+        if($res === false) throw new ConnectionException(curl_error($ch));
+
         $res = json_decode($res);
+
+        if($res == null) throw new EmptyException('Empty response from portal');
+        if(isset($res->error)) throw new BitrixErrorException($res->error_description);
 
         return $res;
     }
