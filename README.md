@@ -1,6 +1,9 @@
 # Пакет для работы с Bitrix24 через webhook
 ## Установка
-С помощью composer: composer require 'zloykolobok/bitrix24'
+С помощью composer: <br />
+```php
+composer require 'zloykolobok/bitrix24'
+```
 ## Пример использования
 ### Пример 1
 Мы хотим получить создать новый Лид:
@@ -46,5 +49,5 @@ $res = $oBitrix->leadGet($id);
 ## Документация по REST Битрикс24
 https://dev.1c-bitrix.ru/rest_help/
 ## Связаться с автором
- *Email: rnikolaenkov@yandex.ru
- *Блог: https://web-programming.com.ua
+ * Email: rnikolaenkov@yandex.ru
+ * Блог: https://web-programming.com.ua
