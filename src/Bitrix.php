@@ -42,9 +42,7 @@ abstract class Bitrix
 
     protected function send(array $data, $action)
     {
-        if (!extension_loaded('curl')) {
-            throw new BitrixException('cURL extension must be installed to use this library');
-        }
+        if(!extension_loaded('curl')) throw new BitrixException('cURL extension must be installed to use this library');
         if(!$this->getUrl()) throw new UrlException('Необходимо задать url');
         if(!$this->getTimeout()) throw new TimeoutException('Необходимо задать timeout');
 

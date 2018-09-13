@@ -9,7 +9,6 @@
             "email": "rnikolaenkov@yandex.ru"
         }
     ],
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Zloykolobok\\Bitrix24\\": "src/"
