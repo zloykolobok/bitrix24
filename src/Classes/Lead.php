@@ -46,7 +46,12 @@ class Lead extends Bitrix
     {
         $action = 'crm.lead.add.json';
         $data['fields'] = $fields;
-        $data['params'] = ['REGISTER_SONET_EVENT' => (int)$event];
+        if($event){
+            $event = 'Y';
+        } else {
+            $event = 'N';
+        }
+        $data['params'] = ['REGISTER_SONET_EVENT' => $event];
 
         $res = $this->send($data,$action);
 
