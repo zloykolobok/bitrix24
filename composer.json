@@ -1,7 +1,6 @@
 {
     "name": "zloykolobok/bitrix24",
     "description": "Package for working with Bitrix24 via webhooks",
-    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
