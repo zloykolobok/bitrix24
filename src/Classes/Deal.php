@@ -274,12 +274,13 @@ class Deal extends Bitrix
      * @throws \Zloykolobok\Bitrix24\Exception\TimeoutException
      * @throws \Zloykolobok\Bitrix24\Exception\UrlException
      */
-    public function delaList(array $order, array $filter, array $select)
+    public function dealList(array $order, array $filter, array $select, int $next = 0)
     {
         $action = 'crm.deal.list.json';
         $data['order'] = $order;
         $data['filter'] = $filter;
         $data['select'] = $select;
+        $data['start'] = $next;
 
         $res = $this->send($data,$action);
 
