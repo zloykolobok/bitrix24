@@ -23,4 +23,19 @@ class Status extends Bitrix
 
         return $res;
     }
+
+    /**
+     * Возвращает описание полей справочника.
+     *
+     * @return void
+     */
+    public function statusFields()
+    {
+        $action = 'crm.status.fields.json';
+        $data['fields'] = [];
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
 }
