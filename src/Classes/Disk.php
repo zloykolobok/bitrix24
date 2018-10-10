@@ -27,5 +27,4 @@ class Disk extends Bitrix
 
         return $res;
     }
-
 }
