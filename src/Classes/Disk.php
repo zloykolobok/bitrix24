@@ -9,9 +9,11 @@ class Disk extends Bitrix
     public function uploadFile(int $id, array $fields, string $content)
     {
         $action = 'disk.storage.uploadfile.json';
-        $data['ID'] = $id;
+        $data['id'] = $id;
         $data['fields'] = $fields;
         $data['fileContent'] = $content;
+
+        dd($data);
 
         $res = $this->send($data,$action);
 
