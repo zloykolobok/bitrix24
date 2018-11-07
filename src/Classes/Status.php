@@ -55,4 +55,93 @@ class Status extends Bitrix
 
         return $res;
     }
+
+    /**
+     * Создаёт новый элемент в указанном справочнике.
+     *
+     * @param array $fields
+     * @return mixed
+     */
+    public function statusAdd(array $fields)
+    {
+        $action = 'crm.status.add.json';
+        $data['fields'] = $fields;
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
+
+    /**
+     * Удаляет элемент справочника
+     * Набор параметров. FORCED - флаг принудительного удаления системных элементов.
+     * По умолчанию - N. Если удаляемый элемент является системным,
+     * то он не будет удалён. Если будет передано значение Y, то этот элемент будет удалён
+     * в любом случае.
+     *
+     * @param int $id
+     * @param string $params
+     * @return mixed
+     */
+    public function statusDelete(int $id, string $params = 'N')
+    {
+        $action = 'crm.status.delete.json';
+        $data['id'] = $id;
+        $data['params']['FORCED'] = $params ;
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
+
+    /**
+     * Возвращает описание типов справочников.
+     * Результат - массив вида array(array("ID"=>"символьный идентификатор справочника",
+     * "NAME":"название справочника")[, ...]).
+     *
+     * @return mixed
+     */
+    public function statusEntityTypes()
+    {
+        $action = 'crm.status.entity.types.json';
+        $data = [];
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
+
+    /**
+     * Возвращает элемент справочника по идентификатору.
+     *
+     * @param int $id
+     * @return mixed
+     */
+    public function statusGet(int $id)
+    {
+        $action = 'crm.status.get.json';
+        $data['id'] = $id;
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
+
+    /**
+     * Обновляет существующий элемент справочника.
+     *
+     * @param int $id
+     * @param array $fields
+     * @return mixed
+     */
+    public function statusUpdate(int $id, array $fields)
+    {
+        $action = 'crm.status.update.json';
+        $data['id'] = $id;
+        $data['fields'] = $fields;
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
 }
