@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Документация: https://dev.1c-bitrix.ru/rest_help/crm/stream/index.php
+ */
 namespace Zloykolobok\Bitrix24\Classes;
 
 use Zloykolobok\Bitrix24\Bitrix;
