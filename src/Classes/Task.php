@@ -49,13 +49,9 @@ class Task extends Bitrix
      * @param array $taskdata
      * @return void
      */
-    public function taskItemAdd(array $taskdata)
+    public function taskItemAdd(array $data)
     {
         $action = 'task.item.add.json';
-
-        foreach ($taskdata as $key=>$value){
-            $data[$key] = $value;
-        }
 
         $res = $this->send($data,$action);
 
