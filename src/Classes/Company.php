@@ -2,11 +2,12 @@
 /**
  * Документация: https://dev.1c-bitrix.ru/rest_help/crm/company/index.php
  */
+
 namespace Zloykolobok\Bitrix24\Classes;
 
 use Zloykolobok\Bitrix24\Bitrix;
 
-class Compnay extends Bitrix
+class Company extends Bitrix
 {
     /**
      * Возвращает список компаний по фильтру. Является реализацией списочного метода для компаний.
@@ -19,7 +20,8 @@ class Compnay extends Bitrix
      * @param array $order
      * @param array $filter
      * @param array $select
-     * @param int $next
+     * @param int   $next
+     *
      * @return mixed
      * @throws \Zloykolobok\Bitrix24\Exception\BitrixErrorException
      * @throws \Zloykolobok\Bitrix24\Exception\BitrixException
@@ -28,17 +30,27 @@ class Compnay extends Bitrix
      * @throws \Zloykolobok\Bitrix24\Exception\TimeoutException
      * @throws \Zloykolobok\Bitrix24\Exception\UrlException
      */
-    public function companyList(array $order, array $filter, array $select, int $next = 0)
+    public function companyList(array $order = [], array $filter = [], array $select = [], int $next = null)
     {
-        $action = 'crm.company.list.json';
-        $data['order'] = $order;
-        $data['filter'] = $filter;
-        $data['select'] = $select;
-        $data['start'] = $next;
+        return $this->send([
+            'order'  => $order,
+            'filter' => $filter,
+            'select' => $select,
+            'start'  => $next,
+        ], 'crm.company.list.json');
+    }
 
-
-        $res = $this->send($data,$action);
-
-        return $res;
+    /**
+     * Возвращает компанию по идентификатору.
+     *
+     * @see https://dev.1c-bitrix.ru/rest_help/crm/company/crm_company_get.php
+     *
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function companyGet(int $id)
+    {
+        return $this->send(['id' => $id], 'crm.company.get.json');
     }
 }
