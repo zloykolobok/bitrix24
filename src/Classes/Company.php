@@ -53,4 +53,32 @@ class Company extends Bitrix
     {
         return $this->send(['id' => $id], 'crm.company.get.json');
     }
+
+    /**
+     * Возвращает описание полей компании, в том числе пользовательских.
+     *
+     * @see https://dev.1c-bitrix.ru/rest_help/crm/company/crm_company_fields.php
+     *
+     * @return void
+     */
+    public function companyFields()
+    {
+        return $this->send([], 'crm.company.fields.json');
+    }
+
+    /**
+     * Обновляет существующую компанию.
+     *
+     * @see https://dev.1c-bitrix.ru/rest_help/crm/company/crm_company_update.php
+     *
+     * @param integer $id
+     * @param array $fields
+     * @param array $params
+     *
+     * @return void
+     */
+    public function companyUpdate(int $id, array $fields, array $params)
+    {
+        return $this->send(['id' => $id, 'fields' => $fields, 'params' => $params], 'crm.company.update.json');
+    }
 }
