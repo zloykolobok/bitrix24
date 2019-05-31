@@ -81,4 +81,23 @@ class Company extends Bitrix
     {
         return $this->send(['id' => $id, 'fields' => $fields, 'params' => $params], 'crm.company.update.json');
     }
+
+    /**
+     * Возвращает набор контактов, связанных с указанной компанией.
+     *
+     * @see https://dev.1c-bitrix.ru/rest_help/crm/company/crm_company_contact_items_get.php
+     *
+     * @param int $id - Идентификатор компании.
+     * @return mixed
+     * @throws \Zloykolobok\Bitrix24\Exception\BitrixErrorException
+     * @throws \Zloykolobok\Bitrix24\Exception\BitrixException
+     * @throws \Zloykolobok\Bitrix24\Exception\ConnectionException
+     * @throws \Zloykolobok\Bitrix24\Exception\EmptyException
+     * @throws \Zloykolobok\Bitrix24\Exception\TimeoutException
+     * @throws \Zloykolobok\Bitrix24\Exception\UrlException
+     */
+    public function companyContactItemsGet(int $id)
+    {
+        return $this->send(['id' => $id], 'crm.company.contact.items.get.json');
+    }
 }
