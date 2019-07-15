@@ -106,8 +106,13 @@ class Contact extends Bitrix
     public function contactAdd(array $fields, array $params )
     {
         $action = 'crm.contact.add.json';
-        $data['fileds'] = $fields;
-        $data['params'] = $params;
+        foreach ($fields as $key=>$val){
+            $data['fields'][$key] = $val;
+        }
+
+        foreach ($params as $key => $val){
+            $data['params'][$key] = $val;
+        }
 
         $res = $this->send($data,$action);
 
