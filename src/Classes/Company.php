@@ -67,6 +67,30 @@ class Company extends Bitrix
     }
 
     /**
+     * Создаёт новую компанию.
+     *
+     * @see  https://dev.1c-bitrix.ru/rest_help/crm/company/crm_company_add.php
+     * @param array $fields
+     * @param array $params
+     * @return mixed
+     */
+    public function companyAdd(array $fields, array $params )
+    {
+        $action = 'crm.company.add.json';
+        foreach ($fields as $key=>$val){
+            $data['fields'][$key] = $val;
+        }
+
+        foreach ($params as $key => $val){
+            $data['params'][$key] = $val;
+        }
+
+        $res = $this->send($data,$action);
+
+        return $res;
+    }
+
+    /**
      * Обновляет существующую компанию.
      *
      * @see https://dev.1c-bitrix.ru/rest_help/crm/company/crm_company_update.php
