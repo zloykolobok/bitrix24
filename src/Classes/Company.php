@@ -124,4 +124,11 @@ class Company extends Bitrix
     {
         return $this->send(['id' => $id], 'crm.company.contact.items.get.json');
     }
+
+    public function companyContactAdd(int $id, $fields)
+    {
+        $action = 'crm.company.contact.add.json';
+
+        return $this->send(['id' => $id, 'fields' => $fields], $action);
+    }
 }
