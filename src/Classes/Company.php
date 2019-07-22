@@ -131,4 +131,12 @@ class Company extends Bitrix
 
         return $this->send(['id' => $id, 'fields' => $fields], $action);
     }
+
+    public function companyContactItemsDelete(int $id)
+    {
+        $action = 'crm.company.contact.items.delete.json';
+
+        return $this->send(['id' => $id,], $action);
+    }
+
 }
